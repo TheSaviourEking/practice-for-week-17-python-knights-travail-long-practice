@@ -41,20 +41,10 @@ class KnightPathFinder:
         self._considered_positions.update(new_moves)
         return new_moves
 
-    # def build_move_tree(self):
-    #     positions = self.new_move_positions(self._root.value)
-
-    #     for value in positions:
-    #         self._root.add_child(Node(value))
-
-    #     return self._root
-
     def build_move_tree(self):
         queue = [self._root]
-        count = 0
 
         while queue:
-            count += 1
             current_node = queue.pop(0)
             new_positions = self.new_move_positions(current_node.value)
 
@@ -65,21 +55,6 @@ class KnightPathFinder:
                 queue.append(new_node)
 
         return queue
-
-    # def build_move_tree(self):
-    #     moves = [self._root]
-
-    #     while moves:
-    #         current = moves[0]
-    #         position = current.value
-    #         new_moves = self.new_move_positions(position)
-
-    #         for move in new_moves:
-    #             node = Node(move)
-    #             current.add_child(node)
-    #             moves.append(node)
-
-    #         moves.pop(0)
 
     def find_path(self, end_position):
         end_node = self._root.breadth_search(end_position)
