@@ -13,15 +13,15 @@ class Node:
         return self._children
 
     def add_child(self, node):
-        if node not in self._children:
-            self._children.append(node)
+        if node not in self._children and isinstance(node, Node):
+            self.children.append(node)
 
             if node.parent:
                 node.parent = self
 
     def remove_child(self, node):
         if node in self._children:
-            self._children.remove(node)
+            self.children.remove(node)
             node.parent = None
 
     @property
@@ -115,9 +115,9 @@ if __name__ == "__main__":
     child1.add_child(child2)
     print(list(child1.children), [child2])
 
-    print(node1.children, '[]')
+    print(node1.children, "[]")
     print(node2.children, "[node-3]")
-    print(node3.parent, 'node-2\n', node3, 'node-3\n')
-    print(node2, 'node-2\n', node1, 'node-1')
+    print(node3.parent, "node-2\n", node3, "node-3\n")
+    print(node2, "node-2\n", node1, "node-1")
 
     print(node2.depth_search("root3"))
